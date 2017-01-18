@@ -1,11 +1,10 @@
 package io.github.ryantaplin1705.domain;
 
-public class Balance {
+public class UpdateAmount {
+    public final int amount;
 
-    public final int total;
-
-    public Balance(int total) {
-        this.total = total;
+    public UpdateAmount(int amount) {
+        this.amount = amount;
     }
 
     @Override
@@ -13,13 +12,13 @@ public class Balance {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Balance balance = (Balance) o;
+        UpdateAmount that = (UpdateAmount) o;
 
-        return total == balance.total;
+        return amount == that.amount;
     }
 
     @Override
     public int hashCode() {
-        return total;
+        return amount;
     }
 }
