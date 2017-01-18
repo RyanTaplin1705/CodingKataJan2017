@@ -1,0 +1,1 @@
+# CodingKataJan2017
