@@ -14,4 +14,10 @@ public class Statement {
     public void addTransaction(TransactionEvent transactionEvent) {
         transactionEvents.add(transactionEvent);
     }
+
+    public void print() {
+        System.out.println("***************");
+        transactionEvents.forEach(TransactionEvent::print);
+        System.out.println("***************");
+    }
 }

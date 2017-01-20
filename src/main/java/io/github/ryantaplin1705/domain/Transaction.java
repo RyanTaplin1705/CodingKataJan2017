@@ -9,6 +9,13 @@ public class Transaction {
         this.newBalance = newBalance;
     }
 
+    public void print(String transactionInfo) {
+        System.out.print("! " + transactionInfo + " -- ");
+        amount.print();
+        newBalance.print();
+        System.out.println("");
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

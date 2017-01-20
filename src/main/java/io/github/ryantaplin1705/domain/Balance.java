@@ -8,6 +8,10 @@ public class Balance {
         this.total = total;
     }
 
+    public void print() {
+        System.out.print("Balance: £" + total + " ");
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

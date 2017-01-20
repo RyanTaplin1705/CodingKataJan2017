@@ -7,6 +7,10 @@ public class UpdateAmount {
         this.amount = amount;
     }
 
+    public void print() {
+        System.out.print("Transaction: £" + amount + " ");
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

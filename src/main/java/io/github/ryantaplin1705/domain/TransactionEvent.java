@@ -12,6 +12,10 @@ public class TransactionEvent {
         this.transaction = transaction;
     }
 
+    public void print() {
+        transaction.print(transactionDate.toString());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
