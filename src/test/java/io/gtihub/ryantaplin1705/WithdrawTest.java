@@ -26,7 +26,7 @@ public class WithdrawTest {
         account.deposit(500); // better way to add initial currency?
 
         account.withdraw(100);
-        verify(statement).addTransaction(new TransactionEvent(NOW, new Transaction(new UpdateAmount(-100), new Balance(400))));
+        verify(statement).addTransaction(new TransactionEvent(NOW, new Transaction(new TransactionReference("ATM"), new TransactionDetails(new UpdateAmount(-100), new Balance(400)))));
     }
 
     @Test

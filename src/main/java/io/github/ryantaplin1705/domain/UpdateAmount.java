@@ -7,14 +7,18 @@ public class UpdateAmount {
         this.amount = amount;
     }
 
-    public void print() {
+    public void print(TransactionReference reference) {
         String appendValue = "";
         if (amount > 0)
-            appendValue = "deposited";
+            appendValue = " deposited ";
         if (amount < 0)
-            appendValue = "withdrew";
+            appendValue = " withdrew ";
+        if (!reference.checkDefault() && amount > 0)
+            appendValue = " sent ";
+        if (!reference.checkDefault() && amount < 0)
+            appendValue = " received ";
 
-        System.out.print(" you " + appendValue + " £" + makeIntegerPositive(amount) + " ");
+        System.out.print(appendValue + "£" + makeIntegerPositive(amount) + " ");
     }
 
     private int makeIntegerPositive(int amount) {

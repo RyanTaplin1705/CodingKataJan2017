@@ -25,7 +25,7 @@ public class DepositTest {
         BankAccount account = new BankAccount(statement, clock);
 
         account.deposit(100);
-        verify(statement).addTransaction(new TransactionEvent(NOW, new Transaction(new UpdateAmount(100), new Balance(100))));
+        verify(statement).addTransaction(new TransactionEvent(NOW, new Transaction(new TransactionReference("ATM"), new TransactionDetails(new UpdateAmount(100), new Balance(100)))));
     }
 
     @Test
@@ -33,7 +33,7 @@ public class DepositTest {
         BankAccount account = new BankAccount(statement, clock);
 
         account.deposit(0);
-        verify(statement).addTransaction(new TransactionEvent(NOW, new Transaction(new UpdateAmount(0), new Balance(0))));
+        verify(statement).addTransaction(new TransactionEvent(NOW, new Transaction(new TransactionReference("ATM"), new TransactionDetails(new UpdateAmount(0), new Balance(0)))));
     }
 
     @Test

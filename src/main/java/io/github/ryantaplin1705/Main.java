@@ -7,10 +7,16 @@ import io.github.ryantaplin1705.domain.Statement;
 public class Main {
 
     private static final Statement statement = new Statement();
+    private static final Statement statement2 = new Statement();
     private static final Clock clock = new Clock();
 
     public static void main(String[] args) {
         BankAccount account = new BankAccount(statement, clock);
+        BankAccount account2 = new BankAccount(statement2, clock);
+
+        account2.deposit(5000);
+
+        account2.transfer(account, 2000);
 
         account.deposit(50);
         account.deposit(1000);
@@ -18,7 +24,10 @@ public class Main {
 
         account.printStatement();
 
-        System.out.print("Hello Tom :O!!!");
+        System.out.println("Hello Tom :O!!!");
+
+        account2.printStatement();
+
     }
 
 

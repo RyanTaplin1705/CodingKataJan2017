@@ -13,7 +13,7 @@ public class TransactionEvent {
     }
 
     public void print() {
-        transaction.print("On " + transactionDate.toString());
+        transaction.print(transactionDate.toString());
     }
 
     @Override

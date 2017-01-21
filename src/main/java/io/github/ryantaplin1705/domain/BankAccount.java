@@ -13,30 +13,41 @@ public class BankAccount {
         this.statement = statement;
     }
 
-
     //TODO:: Remove property balance.total <-> conflicts with rule 9.
     public void deposit(int depositValue) {
-        balance = new Balance(balance.total + depositValue);
+        updateBalance(depositValue);
+        if (isPositive(depositValue))
+            statement.addTransaction(new TransactionEvent(clock.now(), new Transaction(new TransactionReference("ATM"), new TransactionDetails(new UpdateAmount(depositValue), balance))));
+    }
 
-        if (checkIsPositive(depositValue))
-            statement.addTransaction(new TransactionEvent(clock.now(), new Transaction(new UpdateAmount(depositValue), balance)));
+    private void updateBalance(int money) {
+        balance = new Balance(balance.total + money);
     }
 
     //TODO:: Remove property balance.total <-> conflicts with rule 9.
     public void withdraw(int withdrawValue) {
-        balance = new Balance(balance.total - withdrawValue);
-
-        if (checkIsPositive(withdrawValue) && balance.total >= withdrawValue)
-            statement.addTransaction(new TransactionEvent(clock.now(), new Transaction(new UpdateAmount(-withdrawValue), balance)));
-    }
-
-    private boolean checkIsPositive(int value) {
-        if (value >= 0)
-            return true;
-        return false;
+        updateBalance(-withdrawValue);
+        if (isPositive(withdrawValue) && balance.total >= withdrawValue)
+            statement.addTransaction(new TransactionEvent(clock.now(), new Transaction(new TransactionReference("ATM"), new TransactionDetails(new UpdateAmount(-withdrawValue), balance))));
     }
 
     public void printStatement() {
         statement.print();
+    }
+
+    public void transfer(BankAccount recipient, int transferValue) {
+        if (!isPositive(transferValue)) return;
+        updateBalance(-transferValue);
+        recipient.receivePayment(this, transferValue);
+        statement.addTransaction(new TransactionEvent(clock.now(), new Transaction(new TransactionReference(recipient.toString()), new TransactionDetails(new UpdateAmount(-transferValue), balance))));
+    }
+
+    private void receivePayment(BankAccount sender, int paymentValue) {
+        updateBalance(paymentValue);
+        statement.addTransaction(new TransactionEvent(clock.now(), new Transaction(new TransactionReference(sender.toString()), new TransactionDetails(new UpdateAmount(paymentValue), balance))));
+    }
+
+    private boolean isPositive(int value) {
+        return value >= 0;
     }
 }

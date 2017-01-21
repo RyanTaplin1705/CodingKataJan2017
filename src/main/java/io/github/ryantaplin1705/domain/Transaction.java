@@ -1,18 +1,18 @@
 package io.github.ryantaplin1705.domain;
 
 public class Transaction {
-    private final UpdateAmount amount;
-    private final Balance newBalance;
+    private final TransactionReference reference;
+    private final TransactionDetails details;
 
-    public Transaction(UpdateAmount amount, Balance newBalance) {
-        this.amount = amount;
-        this.newBalance = newBalance;
+    public Transaction(TransactionReference reference, TransactionDetails details) {
+        this.reference = reference;
+        this.details = details;
     }
 
     public void print(String transactionInfo) {
-        System.out.print("! " + transactionInfo);
-        amount.print();
-        newBalance.print();
+        System.out.print("! " + transactionInfo + " ");
+        reference.print();
+        details.print(reference);
         System.out.println("");
     }
 
@@ -23,14 +23,15 @@ public class Transaction {
 
         Transaction that = (Transaction) o;
 
-        if (amount != null ? !amount.equals(that.amount) : that.amount != null) return false;
-        return newBalance != null ? newBalance.equals(that.newBalance) : that.newBalance == null;
+        if (reference != null ? !reference.equals(that.reference) : that.reference != null) return false;
+        return details != null ? details.equals(that.details) : that.details == null;
+
     }
 
     @Override
     public int hashCode() {
-        int result = amount != null ? amount.hashCode() : 0;
-        result = 31 * result + (newBalance != null ? newBalance.hashCode() : 0);
+        int result = reference != null ? reference.hashCode() : 0;
+        result = 31 * result + (details != null ? details.hashCode() : 0);
         return result;
     }
 }
