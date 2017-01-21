@@ -8,7 +8,19 @@ public class UpdateAmount {
     }
 
     public void print() {
-        System.out.print("Transaction: £" + amount + " ");
+        String appendValue = "";
+        if (amount > 0)
+            appendValue = "deposited";
+        if (amount < 0)
+            appendValue = "withdrew";
+
+        System.out.print(" you " + appendValue + " £" + makeIntegerPositive(amount) + " ");
+    }
+
+    private int makeIntegerPositive(int amount) {
+        if (amount < 0)
+            return -amount;
+        return amount;
     }
 
     @Override

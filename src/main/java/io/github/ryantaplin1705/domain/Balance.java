@@ -9,7 +9,7 @@ public class Balance {
     }
 
     public void print() {
-        System.out.print("Balance: £" + total + " ");
+        System.out.print("your new balance was £" + total + ".");
     }
 
     @Override

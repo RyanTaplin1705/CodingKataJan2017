@@ -23,11 +23,11 @@ public class Main {
 
 
     /*  TODO:: List
-         1. Deposit & Withdraw (DONE)
+         1. Deposit & Withdraw [DONE]
          2. Transfer between accounts
-         3. Account Statements (DONE)
-         4. Statement Printing (DONE)
-         5. Statement Filtering
+         3. Account Statements (Date, Amount, newBalance)  [DONE]
+         4. Statement Printing [DONE]
+         5. Statement Filtering (Deposits, Withdrawals, Dates)
 
 
          Rules:

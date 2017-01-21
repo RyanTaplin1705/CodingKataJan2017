@@ -10,7 +10,7 @@ public class Transaction {
     }
 
     public void print(String transactionInfo) {
-        System.out.print("! " + transactionInfo + " -- ");
+        System.out.print("! " + transactionInfo);
         amount.print();
         newBalance.print();
         System.out.println("");
